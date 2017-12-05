@@ -94,4 +94,24 @@ class DbHandler{
         return $data;
     }
     
+    public function getArticle($id){
+        try{
+            $stmt=$this->conn->prepare("SELECT title, description, content
+                                        FROM pages
+                                        WHERE id=:id");
+            $stmt->bindValue(':id',$id,PDO::PARAM_INT);
+            $stmt->execute();
+            $page = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $data = array(
+                'error' =>false,
+                'items'=>$page
+            );
+        } catch (PDOException $ex) {
+                $data = array('error'=>true,
+                          'message'=>$ex->getMessage()
+                    );
+        }
+        return $data;
+    }
+    
 }
