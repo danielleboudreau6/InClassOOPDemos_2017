@@ -1,6 +1,7 @@
 <?php
 // ************************** CONSTANTS **************************/
 define('SITE_URI', '/InClassOOPDemos_2017/');
+
 // **************************** SESSION **************************/
 //start the session
 session_start();
@@ -16,15 +17,17 @@ session_start();
 
 //var_dump($_SESSION);
 
-//function __autoload($class) {
-//    require_once 'classes/' . $class . '.php';
-//}
+function __autoload($class) {
+    require_once 'classes/' . $class . '.php';
+}
 
 //instantiate the database handler
-//$dbh = new DbHandler();
+$dbh = new DbHandler();
 //print_r($dbh);
 //exit();  
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
