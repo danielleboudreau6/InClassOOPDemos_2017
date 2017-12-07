@@ -1,11 +1,12 @@
 <?php
 
 // Class to handle all database operations.
+// 
 // This class will have all the CRUD methods:
-// C - Create, 
-// R - Read, 
-// U - Update, 
-// D - Delete
+// C - Create, INSERTS
+// R - Read, SELECTS
+// U - Update, UPDATES
+// D - Delete, DELETES
 
 class DbHandler{
     private $conn;
@@ -107,6 +108,27 @@ class DbHandler{
                 'items'=>$page
             );
         } catch (PDOException $ex) {
+                $data = array('error'=>true,
+                          'message'=>$ex->getMessage()
+                    );
+        }
+        return $data;
+    }
+    
+    public function getArticles(){
+        
+            $sql="SELECT id, title, description
+                FROM pages
+                ORDER BY title";
+            try{
+                $stmt = $this->conn->query($sql);
+                // pass on the connection in this 
+                $articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $data = array(
+                    'error' =>false,
+                    'items'=>$articles
+                );
+            } catch (PDOException $ex) {
                 $data = array('error'=>true,
                           'message'=>$ex->getMessage()
                     );

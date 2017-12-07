@@ -6,6 +6,14 @@ define('SITE_URI', '/InClassOOPDemos_2017/');
 //start the session
 session_start();
 
+//$_SESSION['user_id']=1; 
+//$_SESSION['user_not_expired']=true;
+//$_SESSION['admin']=true;
+//var_dump($_SESSION);
+
+// turn output buffering on
+ob_start();
+
 /* ************************************************************** */
 /* Autoloading Classes
  * Whenever your code tries to create a new instance of a class

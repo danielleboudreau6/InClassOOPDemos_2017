@@ -7,7 +7,42 @@
         <li class="breadcrumb-item active">Articles</li>            
     </ol>
     <!-- end breadcrumb -->    
-    <table class="table table-striped table-hover table-bordered">
+    
+    <?php
+        $data = $dbh->getArticles();
+        //var_dump($data);
+        if($data['error']==false){
+            $articles = $data['items'];
+            //var_dump($articles);
+            echo '<table class="table table-striped table-hover table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">View</th>
+                        </tr>
+                    </thead>';
+            foreach($articles as $article){
+                $id = $article['id'];
+                $title = $article['title'];
+                $desc = $article['description'];
+                
+                echo '<tr>
+                        <th scope="row">'.$title.'</th>
+                        <td>'.$desc.'</td>
+                        <td><a href="article.php?id='.$id.'">Read Article</a>  <i class="fa fa-eye" aria-hidden="true"></i></td>
+                    </tr>';
+                
+            }
+            
+            echo '</thead></table>';
+        }
+        
+    
+    ?>
+    
+    
+<!--    <table class="table table-striped table-hover table-bordered">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Title</th>
@@ -32,6 +67,6 @@
                 <td><a href="article.php?id=3">Read Article</a>  <i class="fa fa-eye" aria-hidden="true"></i></td>
             </tr>
         </tbody>
-    </table>
+    </table>-->
 </div>
 
